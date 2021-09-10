@@ -15,7 +15,7 @@ class AddPostTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('subject',196);
+            $table->string('subject',160);
             $table->longText('content');
             $table->timestamps();
         });
