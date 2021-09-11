@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +26,13 @@ Route::get('/ping', [AppController::class,'ping']);
 Route::get('/posts', [PostController::class,'index']);
 Route::post('/posts', [PostController::class,'create']);
 Route::get('/posts/{id}',[PostController::class,'read']);
+Route::patch('/posts/{id}',[PostController::class,'update']);
+Route::delete('/posts/{id}', [PostController::class,'delete']);
+
+Route::post('/posts/{postId}/comments', [CommentController::class,'create']);
+Route::delete('/posts/{postId}/comments/{id}', [CommentController::class,'delete']);
+
+Route::post('/categories', [CategoryController::class,'create']);
+Route::get('/categories', [CategoryController::class,'index']);
+Route::patch('/categories/{id}', [CategoryController::class,'update']);
+Route::delete('/categories/{id}', [CategoryController::class,'delete']);
