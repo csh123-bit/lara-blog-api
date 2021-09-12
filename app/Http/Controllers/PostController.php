@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function index(){
         $posts = Post::orderBy('id','desc')
-        ->with(['categories','comments'])->get();
+        ->with(['categories','comments'])
+        ->paginate(10);
 
         return response()->json($posts);
     }
