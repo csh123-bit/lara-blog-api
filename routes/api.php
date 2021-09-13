@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
@@ -36,3 +37,6 @@ Route::post('/categories', [CategoryController::class,'create']);
 Route::get('/categories', [CategoryController::class,'index']);
 Route::patch('/categories/{id}', [CategoryController::class,'update']);
 Route::delete('/categories/{id}', [CategoryController::class,'delete']);
+
+Route::post('/sign-up',[AuthController::class,'signUp']);
+Route::post('/sign-in',[AuthController::class,'signIn']);
