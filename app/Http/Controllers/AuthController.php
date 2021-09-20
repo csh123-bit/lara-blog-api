@@ -1,14 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use App\Models\User;
 
 class AuthController extends Controller
 {
     public function signUp(Request $request){
+        // $validator = Validator::Make($request->all(),[
+        //     'name'=>'required',
+        //     'email'=>'required',
+        //     'password'=>'required',
+        //     'password_confirmation'=>'required',
+        // ]);
+
+        // if($validator->fails()){
+        //     return response()->json(['message'=>'폼 검증 실패'],422);
+        // }
+
         $params = $request->only(['name','email','password']);
         $params['password'] = bcrypt($params['password']);
         $user = User::create($params);

@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\PostRequests;
 use App\Models\Post;
 
+
 class PostController extends Controller
 {
     public function index(){
+        logger('comment.user');
         $posts = Post::orderBy('id','desc')
         ->with(['categories','comments','user'])
         ->paginate(10);
@@ -30,7 +32,7 @@ class PostController extends Controller
     public function read($id){
         $post = Post::where('id',$id)
         ->with(['comments','user'])->first();
-        //$post = Post::find($id);
+        $post = Post::find($id);
 
         if(!$post){
             return response()->json(['message'=>'조회한 데이터가 없습니다.'],404);
